@@ -1,16 +1,26 @@
-<!--
- * @Author: your name
- * @Date: 2021-06-11 15:14:14
- * @LastEditTime: 2021-06-18 17:19:37
- * @LastEditors: your name
- * @Description: In User Settings Edit
- * @FilePath: \base_pc_project\src\App.vue
--->
 <template>
-  <div id="app">
-    <router-view />
-  </div>
+  <a-config-provider :locale="locale">
+    <div id="app">
+      <router-view />
+      <loading v-if="$store.state.global.loading" />
+    </div>
+  </a-config-provider>
 </template>
+
+<script>
+import Loading from "@/components/common/loading.vue";
+import zhCN from "ant-design-vue/lib/locale-provider/zh_CN";
+export default {
+  components: {
+    Loading,
+  },
+  data() {
+    return {
+      locale: zhCN, // 国际化语言配置，使用中文为主
+    };
+  },
+};
+</script>
 
 <style lang="scss">
 #app {
@@ -19,18 +29,5 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
 }
 </style>
