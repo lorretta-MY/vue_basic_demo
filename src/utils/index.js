@@ -1,8 +1,11 @@
-/*
- * @Author: your name
- * @Date: 2021-06-18 16:47:33
- * @LastEditTime: 2021-06-18 16:47:34
- * @LastEditors: Please set LastEditors
- * @Description: In User Settings Edit
- * @FilePath: \base_pc_project\src\utils\index.js
- */
+export const getUrlParams = (name) => {
+  const url = window.location.href.split("?")[1] || "";
+  if (!url) return "";
+  const theRequest = new Object();
+  const params = url.split("&");
+  for (let i = 0; i < params.length; i++) {
+    const el = params[i].split("=");
+    theRequest[el[0]] = el[1];
+  }
+  return theRequest[name] || "";
+};
